@@ -26,7 +26,7 @@ of artifacts, and gaps that need attention. It's especially useful when:
 Analyze project structure and content:
 
 **Design Documentation** (`design/`):
-- Count GDD files in `design/gdd/*.md`
+- Count GDD files in `design/gdd/*.md`, excluding `AGENTS.md`, `AGENTS.override.md`, `CLAUDE.md`, and `CLAUDE.local.md` (instruction files, not GDDs)
 - Check for game-concept.md, game-pillars.md, systems-index.md
 - If systems-index.md exists, count total systems vs. designed systems
 - Analyze completeness (Overview, Detailed Design, Edge Cases, etc.)

@@ -55,6 +55,9 @@ echo "## Design Docs — Work In Progress"
 WIP_FOUND=false
 for f in design/gdd/*.md; do
     [ -f "$f" ] || continue
+    case "$(basename "$f")" in
+        AGENTS.md|AGENTS.override.md|CLAUDE.md|CLAUDE.local.md) continue ;;
+    esac
     INCOMPLETE=$(grep -n -E "TODO|WIP|PLACEHOLDER|\[TO BE|\[TBD\]" "$f" 2>/dev/null)
     if [ -n "$INCOMPLETE" ]; then
         WIP_FOUND=true

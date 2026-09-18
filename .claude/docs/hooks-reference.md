@@ -1,6 +1,13 @@
 # Active Hooks
 
-Hooks are configured in `.claude/settings.json` and fire automatically:
+Hooks are configured in `.claude/settings.json` and fire automatically in Claude Code:
+
+The Codex adapter does not register these events. It can explicitly run the commit
+and push validators with `python3 scripts/studio_check.py commit` or `push`; see
+`docs/codex/README.md`. Game-content checks exclude `AGENTS.md`,
+`AGENTS.override.md`, `CLAUDE.md`, and `CLAUDE.local.md`. Instruction-only core
+directories do not trigger a missing-architecture warning. Shell files are
+checked out with LF via `.gitattributes` for Git Bash compatibility.
 
 | Hook | Event | Trigger | Action |
 | ---- | ----- | ------- | ------ |

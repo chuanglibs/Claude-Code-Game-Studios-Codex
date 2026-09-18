@@ -52,7 +52,7 @@ else
 fi
 
 if [ -d "design/gdd" ]; then
-  DESIGN_FILES=$(find design/gdd -type f -name "*.md" 2>/dev/null | wc -l)
+  DESIGN_FILES=$(find design/gdd -type f -name "*.md" ! -name "AGENTS.md" ! -name "AGENTS.override.md" ! -name "CLAUDE.md" ! -name "CLAUDE.local.md" 2>/dev/null | wc -l)
 else
   DESIGN_FILES=0
 fi
@@ -95,12 +95,14 @@ if [ -d "prototypes" ]; then
 fi
 
 # --- Check 3: Core systems without architecture docs ---
-if [ -d "src/core" ] || [ -d "src/engine" ]; then
+# Scoped instruction files can create these directories before any code exists.
+CORE_CODE=$(find src/core src/engine -type f \( -name "*.gd" -o -name "*.cs" -o -name "*.cpp" -o -name "*.c" -o -name "*.h" -o -name "*.hpp" -o -name "*.rs" -o -name "*.py" -o -name "*.js" -o -name "*.ts" \) 2>/dev/null | head -1)
+if [ -n "$CORE_CODE" ]; then
   if [ ! -d "docs/architecture" ]; then
     echo "⚠️  GAP: Core engine/systems exist but no docs/architecture/ directory"
     echo "    Suggested action: Create docs/architecture/ and run /architecture-decision"
   else
-    ADR_COUNT=$(find docs/architecture -type f -name "*.md" 2>/dev/null | wc -l)
+    ADR_COUNT=$(find docs/architecture -type f -name "*.md" ! -name "AGENTS.md" ! -name "AGENTS.override.md" ! -name "CLAUDE.md" ! -name "CLAUDE.local.md" 2>/dev/null | wc -l)
     ADR_COUNT=$(echo "$ADR_COUNT" | tr -d ' ')
 
     if [ "$ADR_COUNT" -lt 3 ]; then

@@ -24,7 +24,7 @@ Check:
 - **Game concept exists?** Check for `design/gdd/game-concept.md`.
 - **Source code exists?** Glob for source files in `src/` (`*.gd`, `*.cs`, `*.cpp`, `*.h`, `*.rs`, `*.py`, `*.js`, `*.ts`).
 - **Prototypes exist?** Check for subdirectories in `prototypes/`.
-- **Design docs exist?** Count markdown files in `design/gdd/`.
+- **Design docs exist?** Count markdown files in `design/gdd/`, excluding `AGENTS.md`, `AGENTS.override.md`, `CLAUDE.md`, and `CLAUDE.local.md` (instruction files, not GDDs).
 - **Production artifacts?** Check for files in `production/sprints/` or `production/milestones/`.
 
 Store these findings internally to validate the user's self-assessment and tailor recommendations.

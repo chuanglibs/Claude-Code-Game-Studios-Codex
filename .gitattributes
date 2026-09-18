@@ -1,0 +1,2 @@
+# Bash hooks must remain executable by Git Bash with core.autocrlf enabled.
+*.sh text eol=lf

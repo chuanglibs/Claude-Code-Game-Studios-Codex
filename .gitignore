@@ -12,6 +12,9 @@ Desktop.ini
 # === Claude Code Local ===
 .claude/settings.local.json
 CLAUDE.local.md
+AGENTS.override.md
+# Keep .codex/agents and .agents/skills tracked; they are the Codex adapter.
+.codex/config.toml
 production/session-logs/
 
 # === Internal Planning (not for public) ===

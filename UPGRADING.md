@@ -1,5 +1,32 @@
 # Upgrading Claude Code Game Studios
 
+## Adding or updating Codex support
+
+This fork adds `AGENTS.md`, scoped instruction files, `.agents/skills/studio-*`,
+`.codex/agents/studio-*.toml`, `scripts/`, and `docs/codex/`. Keep `.claude/`:
+it contains the shared workflow source used by both clients.
+
+When merging upstream updates, preserve your project settings in
+`.claude/docs/technical-preferences.md` and `CLAUDE.md`. After resolving shared
+skill/role/rule changes, run:
+
+```bash
+python3 scripts/sync_codex.py
+python3 scripts/sync_codex.py --check
+python3 -m unittest discover -s tests/template -v
+```
+
+The generator refreshes marked outputs and removes obsolete generated entries.
+Unrelated custom skills/roles remain untouched. If a destination already contains
+an unmanaged file, it fails rather than overwriting it; merge or rename that file
+deliberately. Do not overwrite a customized root `AGENTS.md` blindly.
+
+In Codex, use `$studio-start` instead of `/start`. Existing production/design
+artifacts remain in place. No global installation or new game initialization is
+required. See [Codex compatibility](docs/codex/README.md) for hook and role limits.
+
+The sections below describe the original Claude framework upgrade history.
+
 This guide covers upgrading your existing game project repo from one version
 of the template to the next.
 

@@ -1,4 +1,24 @@
-# Contributing to Claude Code Game Studios
+# Contributing to Game Studios for Claude Code and Codex
+
+This fork maintains compatibility with the upstream Claude studio and adds a
+Codex adapter. Keep workflow content in `.claude/`; generated Codex entry points
+must not become a second copy of each workflow.
+
+## Codex adapter changes
+
+- Change shared skills/roles/rules at their existing paths, then run
+  `python3 scripts/sync_codex.py` and include the generated changes.
+- Change Codex-specific behavior in `docs/codex/runtime.md` or the generator.
+  Root `AGENTS.md` is maintained directly; scoped `AGENTS.md` files are generated.
+- Keep Codex skill names prefixed with `studio-`. Do not pin user models or
+  modify global Codex configuration from template setup.
+- Run `python3 scripts/sync_codex.py --check` and
+  `python3 -m unittest discover -s tests/template -v` (Python 3.9+).
+- Check the manual smoke scenarios in `docs/codex/README.md` when changing
+  workflow behavior. Structural tests do not establish live model behavior.
+
+The original framework contribution guidance follows; its Claude frontmatter
+requirements apply to `.claude/` sources, not generated Codex wrappers.
 
 CCGS is a coordination framework for indie game development using Claude Code.
 Contributions are welcome — bug fixes, new skills that fill a real gap, agent
@@ -55,9 +75,10 @@ These are the things that will get your PR rejected if you miss them.
 CCGS is not an autonomous system. Every workflow follows:
 **Question → Options → Decision → Draft → Approval → Write**
 
-Skills and agents must ask before acting. Nothing writes to files without
-explicit user confirmation. If your contribution has an agent making decisions
-or writing files unilaterally, it won't be merged.
+Keep user control over material design decisions and explicit review gates.
+For Codex, the runtime guide recognizes already authorized implementation work;
+do not introduce repeated file-by-file approval requests. No workflow grants
+permission to commit, push, deploy, or publish outside the user's request.
 
 ## Testing Your Changes
 

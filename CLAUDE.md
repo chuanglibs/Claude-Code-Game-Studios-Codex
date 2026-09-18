@@ -3,6 +3,15 @@
 Indie game development managed through 49 coordinated Claude Code subagents.
 Each agent owns a specific domain, enforcing separation of concerns and quality.
 
+This template also supports Codex through `AGENTS.md`. Shared workflows remain
+under `.claude/`; see `docs/codex/README.md` for adapter maintenance. In Claude
+Code, continue using the native configuration and slash commands below.
+
+`AGENTS.md`, `AGENTS.override.md`, `CLAUDE.md`, and `CLAUDE.local.md` are
+instruction files, not game content. Exclude them from GDD/ADR counts, asset
+audits, and game progress detection. Directories containing only instructions
+or `.gitkeep` files do not establish that a game system has been implemented.
+
 ## Technology Stack
 
 - **Engine**: [CHOOSE: Godot 4 / Unity / Unreal Engine 5]

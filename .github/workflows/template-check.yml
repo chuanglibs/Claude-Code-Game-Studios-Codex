@@ -1,0 +1,29 @@
+name: Template compatibility
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  adapter:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python: ['3.9', '3.12']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Check generated adapter
+        run: python scripts/sync_codex.py --check
+      - name: Test template tooling
+        shell: bash
+        run: python -m unittest discover -s tests/template -v
+      - name: Check whitespace
+        run: git diff --check

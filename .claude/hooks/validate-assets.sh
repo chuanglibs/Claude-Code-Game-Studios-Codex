@@ -27,6 +27,9 @@ if ! echo "$FILE_PATH" | grep -qE '(^|/)assets/'; then
 fi
 
 FILENAME=$(basename "$FILE_PATH")
+case "$FILENAME" in
+    AGENTS.md|AGENTS.override.md|CLAUDE.md|CLAUDE.local.md) exit 0 ;;
+esac
 WARNINGS=""   # Style/convention issues -- exit 0 with advisory message
 ERRORS=""     # Build-breaking issues -- exit 1 to block the operation
 
